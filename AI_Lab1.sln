@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AI_Lab1", "AI_Lab1\AI_Lab1.vcxproj", "{BAB00530-FAF9-4A78-B512-1D501C668BA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Debug|x64.ActiveCfg = Debug|x64
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Debug|x64.Build.0 = Debug|x64
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Debug|x86.ActiveCfg = Debug|Win32
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Debug|x86.Build.0 = Debug|Win32
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Release|x64.ActiveCfg = Release|x64
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Release|x64.Build.0 = Release|x64
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Release|x86.ActiveCfg = Release|Win32
+		{BAB00530-FAF9-4A78-B512-1D501C668BA5}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A575ED23-C32A-4122-8222-51D03196FB75}
+	EndGlobalSection
+EndGlobal
