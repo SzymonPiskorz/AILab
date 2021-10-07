@@ -10,7 +10,7 @@ NPC::NPC()
 
 void NPC::SetUpSprite()
 {
-	if (!NPCTexture.loadFromFile("ASSETS\\IMAGES\\mario.png"))
+	if (!NPCTexture.loadFromFile("ASSETS\\IMAGES\\ship2.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading player texture" << std::endl;
@@ -19,7 +19,7 @@ void NPC::SetUpSprite()
 	NPCSprite.setPosition(300.0f, 180.0f);
 }
 
-void NPC::Update()
+void NPC::Update(sf::Time t_deltaTime)
 {
 	NPCSprite.move(movement);
 

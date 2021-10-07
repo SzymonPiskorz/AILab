@@ -104,8 +104,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-	m_player.Update();
-	m_npc.Update();
+	m_player.Update(t_deltaTime);
+	m_npc.Update(t_deltaTime);
 }
 
 /// <summary>

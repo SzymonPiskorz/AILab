@@ -9,6 +9,12 @@ class Player
 
 	sf::Vector2f movement;
 	float speed;
+	float acceleration;
+	float rotationSpeed;
+	float minSpeed;
+	float maxSpeed;
+
+	sf::Vector2f direction;
 
 	void SetUpSprite();
 
@@ -16,7 +22,7 @@ public:
 
 	Player();
 	void ProcessEvents();
-	void Update();
+	void Update(sf::Time t_deltaTime);
 	void Render(sf::RenderWindow& t_window);
 };
 

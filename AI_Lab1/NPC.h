@@ -15,7 +15,7 @@ class NPC
 public:
 
 	NPC();
-	void Update();
+	void Update(sf::Time t_deltaTime);
 	void Render(sf::RenderWindow& t_window);
 };
 
