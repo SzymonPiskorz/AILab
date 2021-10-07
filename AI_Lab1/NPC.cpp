@@ -1,11 +1,25 @@
 #include "NPC.h"
 
 
-NPC::NPC()
+NPC::NPC(int t_type)
 {
+	switch (t_type)
+	{
+	case 1:
+		wander = true;
+	case 2:
+		seek = true;
+	case 3:
+		flee = true;
+	default:
+		break;
+	}
 	speed = 4.0f;
-	movement = sf::Vector2f(1.0f, speed);
+	movement = sf::Vector2f(0.0f, 0.0f);
 	SetUpSprite();
+
+	if (wander)
+		kinematicWander();
 }
 
 void NPC::SetUpSprite()
@@ -21,6 +35,13 @@ void NPC::SetUpSprite()
 
 void NPC::Update(sf::Time t_deltaTime)
 {
+	if(wander)
+		if (timer.getElapsedTime().asSeconds() > 2)
+		{
+			kinematicWander();
+			timer.restart();
+		}
+
 	NPCSprite.move(movement);
 
 	if (NPCSprite.getPosition().y > 611.0f)
@@ -47,4 +68,31 @@ void NPC::Update(sf::Time t_deltaTime)
 void NPC::Render(sf::RenderWindow& t_window)
 {
 	t_window.draw(NPCSprite);
+}
+
+void NPC::kinematicWander()
+{
+	float rotationChange = rand() % 40 - 20;
+	float rotation = NPCSprite.getRotation() + rotationChange;
+
+	direction.x = cosf(rotation * (3.14f / 180.0f));
+	direction.y = sinf(rotation * (3.14f / 180.0f));
+	movement = sf::Vector2f((direction.x * speed), (direction.y * speed));
+	NPCSprite.setRotation(rotation);
+}
+
+void NPC::kinematicSeek(sf::Vector2f t_targetPos)
+{
+	if (t_targetPos != NPCSprite.getPosition())
+	{
+		sf::Vector2f velocity = t_targetPos - NPCSprite.getPosition();
+		velocity = velocity / (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))); //normalize
+		velocity *= maxSpeed;
+
+		movement = velocity;
+	}
+}
+
+void NPC::kinematicArrive()
+{
 }

@@ -24,5 +24,6 @@ public:
 	void ProcessEvents();
 	void Update(sf::Time t_deltaTime);
 	void Render(sf::RenderWindow& t_window);
+	sf::Vector2f getPosition();
 };
 

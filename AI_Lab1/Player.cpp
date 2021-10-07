@@ -82,3 +82,8 @@ void Player::Render(sf::RenderWindow& t_window)
 {
 	t_window.draw(playerSprite);
 }
+
+sf::Vector2f Player::getPosition()
+{
+	return playerSprite.getPosition();
+}

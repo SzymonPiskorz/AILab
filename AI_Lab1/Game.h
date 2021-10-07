@@ -41,7 +41,8 @@ private:
 	bool m_exitGame; // control exiting game
 
 	Player m_player;
-	NPC m_npc;
+	NPC m_npcWander;
+	NPC m_npcSeek;
 
 
 };
