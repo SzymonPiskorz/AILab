@@ -13,6 +13,9 @@
 #include "Player.h"
 #include "NPC.h"
 
+#define WINDOW_HEIGHT sf::VideoMode::getDesktopMode().height /4 * 3
+#define WINDOW_WIDTH sf::VideoMode::getDesktopMode().width /4 * 3
+
 class Game
 {
 public:
@@ -43,6 +46,7 @@ private:
 	Player m_player;
 	NPC m_npcWander;
 	NPC m_npcSeek;
+	NPC m_npcArrive;
 
 
 };

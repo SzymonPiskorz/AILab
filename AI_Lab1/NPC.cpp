@@ -31,6 +31,7 @@ void NPC::SetUpSprite()
 	}
 	NPCSprite.setTexture(NPCTexture);
 	NPCSprite.setPosition(300.0f, 180.0f);
+	NPCSprite.setOrigin(40.0f, 41.0f);
 }
 
 void NPC::Update(sf::Time t_deltaTime)
@@ -44,24 +45,24 @@ void NPC::Update(sf::Time t_deltaTime)
 
 	NPCSprite.move(movement);
 
-	if (NPCSprite.getPosition().y > 611.0f)
+	if (NPCSprite.getPosition().y > WINDOW_HEIGHT +11.0f)
 	{
-		NPCSprite.setPosition(sf::Vector2f(NPCSprite.getPosition().x, -20.0f));
+		NPCSprite.setPosition(sf::Vector2f(NPCSprite.getPosition().x, -10.0f));
 	}
 
-	if (NPCSprite.getPosition().y < -21.0f)
+	if (NPCSprite.getPosition().y <-11.0f)
 	{
-		NPCSprite.setPosition(sf::Vector2f(NPCSprite.getPosition().x , 610.0f));
+		NPCSprite.setPosition(sf::Vector2f(NPCSprite.getPosition().x , WINDOW_HEIGHT +10.0f));
 	}
 
-	if (NPCSprite.getPosition().x > 811.0f)
+	if (NPCSprite.getPosition().x > WINDOW_WIDTH +11.0f)
 	{
-		NPCSprite.setPosition(sf::Vector2f(-20.0f, NPCSprite.getPosition().y));
+		NPCSprite.setPosition(sf::Vector2f( -10.0f, NPCSprite.getPosition().y));
 	}
 
-	if (NPCSprite.getPosition().x < -21.0f)
+	if (NPCSprite.getPosition().x < -11.0f)
 	{
-		NPCSprite.setPosition(sf::Vector2f(810.0f, NPCSprite.getPosition().y));
+		NPCSprite.setPosition(sf::Vector2f(WINDOW_WIDTH +10.0f, NPCSprite.getPosition().y));
 	}
 }
 
@@ -83,16 +84,45 @@ void NPC::kinematicWander()
 
 void NPC::kinematicSeek(sf::Vector2f t_targetPos)
 {
-	if (t_targetPos != NPCSprite.getPosition())
-	{
 		sf::Vector2f velocity = t_targetPos - NPCSprite.getPosition();
-		velocity = velocity / (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))); //normalize
-		velocity *= maxSpeed;
 
-		movement = velocity;
-	}
+		if (velocity.x != 0 || velocity.y != 0)
+		{
+			velocity = velocity / (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))); //normalize
+			NPCSprite.setRotation(atan2f(velocity.y, velocity.x) * (180.0f / 3.14f));
+			velocity *= maxSpeed;
+
+			movement = velocity;
+		}
 }
 
-void NPC::kinematicArrive()
+void NPC::kinematicArrive(sf::Vector2f t_targetPos)
 {
+	sf::Vector2f velocity = t_targetPos - NPCSprite.getPosition();
+	float lenght = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y));
+	if (lenght < slowDownRadius)
+	{
+		velocity /= timeToTarget;
+		if (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)) > minSpeed)
+		{
+			velocity = velocity / (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))); //normalize
+			NPCSprite.setRotation(atan2f(velocity.y, velocity.x) * (180.0f / 3.14f));
+			velocity *= minSpeed;
+
+			movement = velocity;
+		}
+	}
+	else
+	{
+		velocity /= timeToTarget;
+		if (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)) > maxSpeed)
+		{
+			velocity = velocity / (sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))); //normalize
+			NPCSprite.setRotation(atan2f(velocity.y, velocity.x) * (180.0f / 3.14f));
+			velocity *= maxSpeed;
+
+			movement = velocity;
+		}
+
+	}
 }

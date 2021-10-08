@@ -2,6 +2,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#define WINDOW_HEIGHT sf::VideoMode::getDesktopMode().height /4 * 3
+#define WINDOW_WIDTH sf::VideoMode::getDesktopMode().width /4 * 3
+
 class NPC
 {
 	sf::Texture NPCTexture;
@@ -19,6 +22,10 @@ class NPC
 
 	float minSpeed = 1;
 	float maxSpeed = 4;
+
+	float timeToTarget = 0.5f;
+	float slowDownRadius = 400.0f;
+	float stopRadius = 200.0f;
 	
 public:
 
@@ -27,6 +34,6 @@ public:
 	void Render(sf::RenderWindow& t_window);
 	void kinematicWander();
 	void kinematicSeek(sf::Vector2f);
-	void kinematicArrive();
+	void kinematicArrive(sf::Vector2f);
 };
 

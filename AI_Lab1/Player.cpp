@@ -58,23 +58,23 @@ void Player::Update(sf::Time t_deltaTime)
 
 	playerSprite.move(movement);
 
-	if (playerSprite.getPosition().x > 811.0f)
+	if (playerSprite.getPosition().x > WINDOW_WIDTH  +11.0f)
 	{
 		playerSprite.setPosition(sf::Vector2f(-10.0f, playerSprite.getPosition().y));
 	}
 
 	if (playerSprite.getPosition().x < -11.0f)
 	{
-		playerSprite.setPosition(sf::Vector2f(810.0f, playerSprite.getPosition().y));
+		playerSprite.setPosition(sf::Vector2f(WINDOW_WIDTH + 10.0f, playerSprite.getPosition().y));
 	}
-	if (playerSprite.getPosition().y > 611.0f)
+	if (playerSprite.getPosition().y > WINDOW_HEIGHT +11.0f)
 	{
 		playerSprite.setPosition(sf::Vector2f(playerSprite.getPosition().x, -10.0f));
 	}
 
 	if (playerSprite.getPosition().y < -11.0f)
 	{
-		playerSprite.setPosition(sf::Vector2f(playerSprite.getPosition().x, 610.0f));
+		playerSprite.setPosition(sf::Vector2f(playerSprite.getPosition().x, WINDOW_HEIGHT +10.0f));
 	}
 }
 

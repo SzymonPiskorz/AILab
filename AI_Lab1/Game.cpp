@@ -17,10 +17,11 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ WINDOW_WIDTH, WINDOW_HEIGHT, 32U }, "SFML Game" },
 	m_exitGame{false}, //when true game will exit
 	m_npcWander(1),
-	m_npcSeek(2)
+	m_npcSeek(2),
+	m_npcArrive(2)
 {
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
@@ -110,6 +111,8 @@ void Game::update(sf::Time t_deltaTime)
 	m_npcWander.Update(t_deltaTime);
 	m_npcSeek.Update(t_deltaTime);
 	m_npcSeek.kinematicSeek(m_player.getPosition());
+	m_npcArrive.Update(t_deltaTime);
+	m_npcArrive.kinematicArrive(m_player.getPosition());
 }
 
 /// <summary>
@@ -123,6 +126,7 @@ void Game::render()
 	m_player.Render(m_window);
 	m_npcWander.Render(m_window);
 	m_npcSeek.Render(m_window);
+	m_npcArrive.Render(m_window);
 	m_window.display();
 }
 

@@ -2,6 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#define WINDOW_HEIGHT sf::VideoMode::getDesktopMode().height /4 * 3
+#define WINDOW_WIDTH sf::VideoMode::getDesktopMode().width /4 * 3
+
 class Player
 {
 	sf::Texture playerTexture;
